@@ -1,1 +1,0 @@
-print(['Down', 'Up'] == ['Up', 'Down'])

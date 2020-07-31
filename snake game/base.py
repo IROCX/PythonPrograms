@@ -6,11 +6,31 @@ MOVE_INCREMENT = 20
 moves_per_second = 7
 GAME_SPEED = 1000//moves_per_second
 
+root = tk.Tk()
+
+def start_game():
+    root.title('SnakeMania')
+    root.resizable(False, False)
+
+    board = Snake()
+    board.pack()
+
+    root.mainloop()
+
+def ender():
+    global root
+    root.destroy()
+    root = tk.Tk()
+    root.focus_force()
+    start_game()
+
 
 class Snake(tk.Canvas):
     def __init__(self):
         super().__init__(width=600, height=600, background='grey', highlightthickness=0)
-
+        self.starter()
+       
+    def starter(self):
         self.snake_positions = [(100, 100), (80, 100), (60, 100)]
         self.food_positions = self.set_food()
         self.score = 0
@@ -21,6 +41,7 @@ class Snake(tk.Canvas):
         self.load_assets()
         self.create_objects()
         self.after(GAME_SPEED, self.perform_actions)
+
 
     def load_assets(self):
         try:
@@ -120,22 +141,21 @@ class Snake(tk.Canvas):
                 return food_position
 
     def end_game(self):
-        self.delete(tk.ALL)
+    
         self.create_text(
             self.winfo_width()/2,
             self.winfo_height()/2,
-            text=f'Game Over!\n You scored : {self.score}',
+            text=f'Game Over!\n You scored : {self.score}\n\n Press Space to play again',
             fill='#fff',
-            font=('TkDefaultFont', 24)
-
+            font=('TkDefaultFont', 24),
+            tag="game_over"
         )
+        self.bind_all('<Key>', self.on_space)
 
+    
+    def on_space(self, e):
+        keypress = e.keysym
+        if keypress == 'space':  
+            ender()
 
-root = tk.Tk()
-root.title('SnakeMania')
-root.resizable(False, False)
-
-board = Snake()
-board.pack()
-
-root.mainloop()
+start_game()
