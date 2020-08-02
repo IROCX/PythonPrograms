@@ -54,6 +54,7 @@ class Snake(tk.Canvas):
             print(error)
             root.destroy()
 
+
     def create_objects(self):
         global moves_per_second
         self.create_text(
