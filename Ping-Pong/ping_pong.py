@@ -100,18 +100,18 @@ while True:
     if (ball.ycor() > 290):
         ball.sety(290)
         ball.dy = ball.dy*-1
-        winsound.PlaySound('Ball_Bounce.wav', winsound.SND_ASYNC)
+        # winsound.PlaySound('Ball_Bounce.wav', winsound.SND_ASYNC)
     if (ball.ycor() < -290):
         ball.sety(-290)
         ball.dy = ball.dy*-1
-        winsound.PlaySound('Ball_Bounce.wav', winsound.SND_ASYNC)
+        # winsound.PlaySound('Ball_Bounce.wav', winsound.SND_ASYNC)
 
     # paddle bounce check
     if  ball.xcor() > 365:
         if (paddle_b.ycor()-40) < ball.ycor() < (paddle_b.ycor()+40):
             ball.setx(360)
             ball.dx = ball.dx*-1
-            winsound.PlaySound('Ball_Bounce.wav', winsound.SND_ASYNC)
+            # winsound.PlaySound('Ball_Bounce.wav', winsound.SND_ASYNC)
         else:
             score_a+=1
             ball.goto(0,0)
@@ -123,7 +123,7 @@ while True:
         if (paddle_a.ycor()-40)<ball.ycor()<(paddle_a.ycor()+40):
             ball.setx(-360)
             ball.dx = ball.dx*-1
-            winsound.PlaySound('Ball_Bounce.wav', winsound.SND_ASYNC)
+            # winsound.PlaySound('Ball_Bounce.wav', winsound.SND_ASYNC)
         else:
             score_b+=1
             ball.goto(0,0)
